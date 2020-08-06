@@ -2,15 +2,21 @@
 
 Converts a line graph to sound and returns an object that can be played
 in Jupyter notebook or Google Colab.
+
+Values are represented by pitches, and the timeline is represented by left and right pans.
+
 It was created to make data science fun for the visually impaired.
 
 # Install
 
 ```
+$ sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg  # if necessary
 $ pip install audio-plot
 ```
 
 # Usage
+
+See and run demo notebook also. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassaku/audio-plot/blob/master/demo.ipynb)
 
 ```
 y = np.sin(np.arange(0, np.pi*2, 0.1))
@@ -30,7 +36,44 @@ tts > line 2
 (Sound in response to changes in the line 2 graph)
 ```
 
-# Update PyPI
+# Example
+
+## Two inverted sinusoidale data
+
+![Two inverted sinusoidale data graph](/assets/demo1.png?raw=true)
+
+```
+audio_plot.plot(yy)
+```
+
+[result](/assets/demo1-1.mp3)
+
+
+```
+audio_plot.plot(yy, ptype="overlay")
+```
+
+[result](/assets/demo1-2.mp3)
+
+```
+audio_plot.plot(yy, duration=200, min_freq=130.813/2, max_freq=130.813*3, labels=["A", "B"])
+```
+
+[result](/assets/demo1-3.mp3)
+
+## COVID-19 deaths data in U.S.
+
+![COVID-19 deaths data graph](/assets/demo2.png?raw=true)
+
+```
+audio_plot.plot(np.array([new_york, texas]).T, labels=["new york", "texas"])
+```
+
+[result](/assets/demo2.mp3)
+
+# For developer
+
+## Update PyPI
 
 ```
 $ nosetests -vs
@@ -49,7 +92,7 @@ $ twine upload --repository pypi dist
 $ pip --no-cache-dir install --upgrade audio-plot
 ```
 
-# Contributing
+## Contributing
 
 - Fork the repository on Github
 - Create a named feature branch (like add_component_x)
