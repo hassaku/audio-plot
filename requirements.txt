@@ -1,0 +1,5 @@
+nose
+mock
+pydub==0.24.1
+gTTS==2.1.1
+audio-plot
