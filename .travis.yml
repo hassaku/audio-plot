@@ -1,6 +1,9 @@
 language: python
 python:
   - "3.7"
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg
 install:
   - travis_retry pip install -r requirements.txt
 cache:
