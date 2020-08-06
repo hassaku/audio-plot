@@ -12,6 +12,7 @@ setup(
     version="0.0.1",
     description="Plot tools based on audio",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     author="hassaku",
     author_email="hassaku.apps@gmail.com",
     url="https://github.com/hassaku/audio-plot",

@@ -34,8 +34,19 @@ tts > line 2
 
 ```
 $ nosetests -vs
-$ python setup.py register  # if necessary
-$ python setup.py sdist upload
+$ pip install twine # if necessary
+$ cat ~/.pypirc  # if necessary
+[distutils]
+index-servers = pypi
+
+[pypi]
+repository: https://upload.pypi.org/legacy/
+username: YOUR_USERNAME
+password: YOUR_PASSWORD
+$ rm -rf audio_plot.egg-info dist # if necessary
+$ python setup.py sdist
+$ twine upload --repository pypi dist
+$ pip --no-cache-dir install --upgrade audio-plot
 ```
 
 # Contributing
