@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>audio-plot examples</title>
+</head>
+
+<style>
+ul {
+  list-style-type: none;
+}
+pre {
+  background: #F8F9F9;
+}
+</style>
+
+<body>
+
+<h1>audio-plot examples</h1>
+
+<a href="https://github.com/hassaku/audio-plot"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="Github repository page" width="100">For more information, visit Github. I'd be happy to give stars and feedback.</a>
+
+
+<h2>Example 1 : Two inverted sinusoidal data</h2>
+
+<h3>Data</h3>
+
+<pre>
+  <code>
+sin = np.sin(np.arange(0, np.pi*2, 0.1))  # 0,  0.09983342,  0.19866933,  0.29552021,  0.38941834, ...
+two_inverted_sin = np.array([sin, -1 * sin]).T
+  </code>
+</pre>
+
+<h3>Line Graph</h3>
+
+<img src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo1.png" alt="two inverted sinusoidal data graph" width="300">
+
+<h3>Audio Plot</h3>
+
+<h4>Case 1</h4>
+
+<pre>
+  <code>
+audio_plot.plot(two_inverted_sin)
+  </code>
+</pre>
+
+<audio src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo1-1.mp3" controls>example 1 case 1 result</audio>
+
+<h4>Case 2</h4>
+
+<pre>
+  <code>
+audio_plot.plot(two_inverted_sin, ptype="overlay")
+  </code>
+</pre>
+
+<audio src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo1-2.mp3" controls>example 1 case 2 result</audio>
+
+<h4>Case 3</h4>
+
+<pre>
+  <code>
+audio_plot.plot(two_inverted_sin, duration=200, min_freq=130.813/2, max_freq=130.813*3, labels=["A", "B"])
+  </code>
+</pre>
+
+<audio src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo1-3.mp3" controls>example 1 case 3 result</audio>
+
+<h2>Example 2 : COVID-19 deaths data in U.S.</h2>
+
+<h3>Data</h3>
+
+<pre>
+  <code>
+df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
+new_york = df[(df.state == "New York") & (df.date > "2020-03-01")].deaths.values
+texas = df[(df.state == "Texas") & (df.date > "2020-03-01")].deaths.values
+
+new_york_and_texas_death_since_march = np.array([new_york, texas]).T
+  </code>
+</pre>
+
+<h3>Line Graph</h3>
+
+<img src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo2.png" alt="covid-19 deaths data graph" width="300">
+
+<h3>Audio Plot</h3>
+
+<pre>
+  <code>
+audio_plot.plot(new_york_and_texas_death_since_march, labels=["new york", "texas"])
+  </code>
+</pre>
+
+<audio src="https://raw.githubusercontent.com/hassaku/audio-plot/master/assets/demo2.mp3" controls>example 2 result</audio>
+
+</body>
+</html>
