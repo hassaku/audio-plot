@@ -36,40 +36,7 @@ tts > line 2
 (Sound in response to changes in the line 2 graph)
 ```
 
-# Example
-
-## Two inverted sinusoidale data
-
-![Two inverted sinusoidale data graph](/assets/demo1.png?raw=true)
-
-```
-audio_plot.plot(yy)
-```
-
-[result](/assets/demo1-1.mp3)
-
-
-```
-audio_plot.plot(yy, ptype="overlay")
-```
-
-[result](/assets/demo1-2.mp3)
-
-```
-audio_plot.plot(yy, duration=200, min_freq=130.813/2, max_freq=130.813*3, labels=["A", "B"])
-```
-
-[result](/assets/demo1-3.mp3)
-
-## COVID-19 deaths data in U.S.
-
-![COVID-19 deaths data graph](/assets/demo2.png?raw=true)
-
-```
-audio_plot.plot(np.array([new_york, texas]).T, labels=["new york", "texas"])
-```
-
-[result](/assets/demo2.mp3)
+[Example Results Page](https://hassaku.github.io/audio-plot/)
 
 # For developer
 
