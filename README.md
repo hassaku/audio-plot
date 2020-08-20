@@ -7,11 +7,28 @@ Values are represented by pitches, and the timeline is represented by left and r
 
 It was created to make data science fun for the visually impaired.
 
+# Dependency
+
+ffmpeg library is needed to provide a descriptive guide to the graph. 
+
+## Google Colab
+
+No additional installation is required.
+
+## Linux
+
+```
+$ sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg
+```
+
+## Others
+
+It's under investigation. If you know of any, please make a pull request. Thanks.
+
 # Install
 
 ```
-$ sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg  # necessary for linux. but not necessary for Colab.
-$ pip install audio-plot
+$ pip install audio-plot  # !pip install audio-plot for Colab or Notebook
 ```
 
 # Usage
