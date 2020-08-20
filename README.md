@@ -10,7 +10,7 @@ It was created to make data science fun for the visually impaired.
 # Install
 
 ```
-$ sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg  # if necessary
+$ sudo apt-get install libavformat-dev libavfilter-dev libavdevice-dev ffmpeg  # necessary for linux. but not necessary for Colab.
 $ pip install audio-plot
 ```
 
@@ -38,7 +38,13 @@ tts > line 2
 
 [Example Results Page](https://hassaku.github.io/audio-plot/)
 
-# For developer
+# Supplement
+
+If using Jupyter Notebook with a screen reader is inconvenient for you, you may want to consider using the following NVDA add-on.
+
+https://github.com/mltony/nvda-browser-nav
+
+# For contributer
 
 ## Update PyPI
 
