@@ -61,6 +61,21 @@ If using Jupyter Notebook with a screen reader is inconvenient for you, you may 
 
 https://github.com/mltony/nvda-browser-nav
 
+# Use in script
+
+```
+from pydub.playback import play
+
+# generate graph sound
+audio = audio_plot.plot(two_inverted_sin)
+
+# play
+play(audio)
+
+# save to audio file
+audio.export("graph.wav", format="wav")
+```
+
 # For contributer
 
 ## Update PyPI
