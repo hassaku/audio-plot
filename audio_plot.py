@@ -75,7 +75,7 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         Frequency corresponding to the minimum value.
     max_freq: float, optional
         Frequency corresponding to the maximum value.
-    decimals:
+    decimals: int, optional
         Number of significant digits in description.
 
     Returns
