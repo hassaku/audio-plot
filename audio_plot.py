@@ -54,7 +54,7 @@ def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, 
 
 
 def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: int=50, gain: int=-5,
-         min_freq: float=130.813, max_freq: float=130.813*4, decimals=1) -> AudioSegment:
+        min_freq: float=130.813, max_freq: float=130.813*4, decimals: int=1) -> AudioSegment:
     """
     Converts a line graph to sound and returns an object that can be played
     in Jupyter notebook or Google Colab.
@@ -67,7 +67,16 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         Graph legend
     ptype : string, optional
         Type of graph, default is sequential. Another is overlay.
-    WIP
+    duration : int, optional
+        Duration of each note in milliseconds.
+    gain : int, optional
+        Gain of each note in dB.
+    min_freq: float, optional
+        Frequency corresponding to the minimum value.
+    max_freq: float, optional
+        Frequency corresponding to the maximum value.
+    decimals:
+        Number of significant digits in description.
 
     Returns
     -------
