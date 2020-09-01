@@ -54,7 +54,7 @@ def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, 
 
 
 def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: int=50, gain: int=-5,
-         min_freq: float=130.813, max_freq: float=130.813*4, decimals=1) -> AudioSegment:
+        min_freq: float=130.813, max_freq: float=130.813*4, decimals: int=1) -> AudioSegment:
     """
     Converts a line graph to sound and returns an object that can be played
     in Jupyter notebook or Google Colab.
