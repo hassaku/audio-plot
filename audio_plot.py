@@ -14,7 +14,7 @@ def __sample(freq: float):
 
 
 def __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gains):
-    assert lines.shape[1] <= 5
+    assert lines.shape[1] <= 5, "The maximum number of lines is 5. (lines.shape[1] <= 5)"
 
     for t in range(lines.shape[1]):
         tones += __tts("{} is {} sound".format(labels[t], ["Sine", "Pulse", "Square", "Sawtooth", "Triangle"][t]))
@@ -104,18 +104,18 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         tts > line 2
         (Sound in response to changes in the line 2 graph)
     """
-    assert lines.ndim == 2
-    assert lines.shape[0] > lines.shape[1]
+    assert lines.ndim == 2, "numpy array lines.ndim must be 2"
+    assert lines.shape[0] > lines.shape[1], "lines.shape must be time and lines each"
 
     if labels is None:
         labels = ["line {}".format(l+1) for l in range(lines.shape[1])]
     else:
-        assert len(labels) == lines.shape[1]
+        assert len(labels) == lines.shape[1], "len(labels) must equal lines.shape[1]"
 
     if gains is None:
         gains = [gain for _ in range(lines.shape[1])]
     else:
-        assert len(gains) == lines.shape[1]
+        assert len(gains) == lines.shape[1], "len(gains) must equal lines.shape[1]"
 
     min_value = np.nanmin(lines)
     max_value = np.nanmax(lines)
