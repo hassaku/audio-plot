@@ -13,7 +13,7 @@ def __sample(freq: float):
     return Sine(freq).to_audio_segment(duration=1000).apply_gain(-10).fade_in(20).fade_out(20)
 
 
-def __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gain):
+def __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gains):
     assert lines.shape[1] <= 5
 
     for t in range(lines.shape[1]):
@@ -25,7 +25,7 @@ def __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gai
 
         for x, y in enumerate(lines[:, t]):
             gen = [Sine, Pulse, Square, Sawtooth, Triangle][t](min_freq + (y - min_value) * tic)
-            wav = gen.to_audio_segment(duration=duration).apply_gain(gain)
+            wav = gen.to_audio_segment(duration=duration).apply_gain(gains[t])
             wav = wav.fade_in(duration/4).fade_out(duration/4).pan(-1.0 + x / lines.shape[0]*2)
             __tones_t += wav
 
@@ -37,7 +37,7 @@ def __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gai
     return tones + __tones
 
 
-def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, gain):
+def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, gains):
     for t in range(lines.shape[1]):
         #if t > 0:
         #    # interlude
@@ -46,14 +46,14 @@ def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, 
 
         for x, y in enumerate(lines[:, t]):
             gen = Sine(min_freq + (y - min_value) * tic)
-            sine = gen.to_audio_segment(duration=duration).apply_gain(gain)
+            sine = gen.to_audio_segment(duration=duration).apply_gain(gains[t])
             sine = sine.fade_in(duration/4).fade_out(duration/4).pan(-1.0 + x / lines.shape[0] * 2)
             tones += sine
 
     return tones
 
 
-def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: int=50, gain: int=-5,
+def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: int=50, gain: int=-5, gains: list=None,
         min_freq: float=130.813, max_freq: float=130.813*4, decimals: int=1, description: bool=True) -> AudioSegment:
     """
     Converts a line graph to sound and returns an object that can be played
@@ -71,6 +71,8 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         Duration of each note in milliseconds.
     gain : int, optional
         Gain of each note in dB.
+    gains : list of int, optional
+        Gain of each line in dB.
     min_freq: float, optional
         Frequency corresponding to the minimum value.
     max_freq: float, optional
@@ -110,6 +112,11 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
     else:
         assert len(labels) == lines.shape[1]
 
+    if gains is None:
+        gains = [gain for _ in range(lines.shape[1])]
+    else:
+        assert len(gains) == lines.shape[1]
+
     min_value = np.nanmin(lines)
     max_value = np.nanmax(lines)
     tic = (max_freq - min_freq) / (max_value - min_value)
@@ -125,9 +132,9 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
 
     # plot lines
     if ptype == "sequential":
-        tones = __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, gain)
+        tones = __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, gains)
     elif ptype == "overlay":
-        tones = __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gain)
+        tones = __overlay_plot(tones, lines, labels, min_freq, min_value, tic, duration, gains)
     else:
         raise NotImplementedError("ptype must be sequential or overlay")
 
