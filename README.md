@@ -78,9 +78,11 @@ username: YOUR_USERNAME
 password: YOUR_PASSWORD
 $ rm -rf audio_plot.egg-info dist # if necessary
 $ python setup.py sdist
-$ twine upload --repository pypi dist
+$ twine upload --repository pypi dist/*
 $ pip --no-cache-dir install --upgrade audio-plot
 ```
+
+https://pypi.org/project/audio-plot/
 
 ## Contributing
 
