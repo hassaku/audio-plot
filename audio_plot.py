@@ -67,7 +67,16 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         Graph legend
     ptype : string, optional
         Type of graph, default is sequential. Another is overlay.
-    WIP
+    duration : int, optional
+        Duration of each note in milliseconds.
+    gain : int, optional
+        Gain of each note in dB.
+    min_freq: float, optional
+        Frequency corresponding to the minimum value.
+    max_freq: float, optional
+        Frequency corresponding to the maximum value.
+    decimals:
+        Number of significant digits in description.
 
     Returns
     -------
