@@ -54,7 +54,7 @@ def __sequential_plot(tones, lines, labels, min_freq, min_value, tic, duration, 
 
 
 def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: int=50, gain: int=-5,
-        min_freq: float=130.813, max_freq: float=130.813*4, decimals: int=1) -> AudioSegment:
+        min_freq: float=130.813, max_freq: float=130.813*4, decimals: int=1, description: bool=True) -> AudioSegment:
     """
     Converts a line graph to sound and returns an object that can be played
     in Jupyter notebook or Google Colab.
@@ -75,8 +75,10 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
         Frequency corresponding to the minimum value.
     max_freq: float, optional
         Frequency corresponding to the maximum value.
-    decimals:
+    decimals: int, optional
         Number of significant digits in description.
+    description: bool, optional
+        Flag whether or not to explain the graph at the beginning.
 
     Returns
     -------
@@ -114,11 +116,12 @@ def plot(lines: np.array, labels: list=None, ptype: str="sequential", duration: 
 
     tones = AudioSegment.silent(duration=0)
 
-    # describe yaxis
-    tones += __tts("minimum value is {}".format(np.round(min_value, decimals)))
-    tones += __sample(min_freq)
-    tones += __tts("maximum value is {}".format(np.round(max_value, decimals)))
-    tones += __sample(max_freq)
+    if description:
+        # describe yaxis
+        tones += __tts("minimum value is {}".format(np.round(min_value, decimals)))
+        tones += __sample(min_freq)
+        tones += __tts("maximum value is {}".format(np.round(max_value, decimals)))
+        tones += __sample(max_freq)
 
     # plot lines
     if ptype == "sequential":
