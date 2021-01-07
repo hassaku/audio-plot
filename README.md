@@ -1,3 +1,9 @@
+**The contents of this page have been taken over by the following new project.**
+
+https://hassaku.github.io/DS-and-ML-with-screen-reader/
+
+----
+
 [![Build Status](https://travis-ci.org/hassaku/audio-plot.png)](https://travis-ci.org/hassaku/audio-plot)
 
 Converts a line graph to sound and returns an object that can be played
