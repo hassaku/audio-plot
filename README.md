@@ -1,6 +1,6 @@
-**The contents of this page have been taken over by the following new project.**
+**This library is already unmaintained. Please check the following new library that is in development.**
 
-https://hassaku.github.io/DS-and-ML-with-screen-reader/
+https://github.com/hassaku/audio-plot-lib
 
 ----
 
